@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import json
 
 url = 'http://developers.gnavi.co.jp/'
 soup = BeautifulSoup(requests.get(url).content,'html.parser')
@@ -17,8 +18,8 @@ for article in articles:
         "imgUrl": article.find("img").get("src")
     })
 
-print(dataList)
-
 nextPageElement = soup.find("span", attrs={"class": "pager-next"})
 nextPageUrl = nextPageElement.find("a").get("href")
-print(nextPageUrl)
+# print(nextPageUrl)
+
+print(json.dumps(dataList))
