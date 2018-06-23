@@ -20,7 +20,7 @@ sls dynamodb start
 
 
 ```var params = {
-    TableName: 'Company,
+    TableName: 'Company',
 };
 dynamodb.scan(params, function(err, data) {
     if (err) ppJson(err);
