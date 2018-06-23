@@ -1,5 +1,68 @@
 service: engineer-blogs
 
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      development:
+        sources:
+          - table: Company
+            sources: [CompanyTable.json]
+          - table: User
+            sources: [UserTable.json]
+          - table: Article
+            sources: [ArticleTable.json]
+
+resources:
+  Resources:
+    CompanyTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Company
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: User
+        AttributeDefinitions:
+          - AttributeName: applicationId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: applicationId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    ArticleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Article
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+          - AttributeName: date
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: date
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
 plugins: 
  - serverless-dynamodb-local
  - serverless-offline
@@ -7,6 +70,13 @@ plugins:
 provider:
   name: aws
   runtime: python3.6
+  # DynamoDBの利用の許可
+  iamRoleStatements:
+    -  Effect: 'Allow'
+       Action:
+         - 'dynamodb:PutItem'
+         - 'dynamodb:Scan'
+       Resource: '*'
 
 functions:
   getRSS:
