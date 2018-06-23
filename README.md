@@ -25,7 +25,8 @@ sls dynamodb start
 dynamodb.scan(params, function(err, data) {
     if (err) ppJson(err);
     else ppJson(data);
-});```
+});
+```
 
 
 `デプロイ前にserverless.ymlの内容を以下に変更してください`
