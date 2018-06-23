@@ -19,7 +19,8 @@ sls dynamodb start
 `各テーブル名: Company,Article,User`
 
 
-```var params = {
+```
+var params = {
     TableName: 'Company',
 };
 dynamodb.scan(params, function(err, data) {
