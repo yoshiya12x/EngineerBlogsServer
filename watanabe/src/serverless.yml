@@ -1,0 +1,23 @@
+service: engineer-blogs
+
+plugins: 
+ - serverless-dynamodb-local
+ - serverless-offline
+ 
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  getRSS:
+    handler: rss.getRSS
+    events:
+      - http:
+          path: getrss
+          method: post
+          cors: true
+          integration: lambda
+          request:
+            template:
+              text/xhtml: '{ "stage" : "$context.stage" }'
+              application/json: '{ "httpMethod" : "$context.httpMethod" }'

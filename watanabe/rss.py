@@ -1,12 +1,8 @@
-from flask import Flask, jsonify, abort, make_response
 from collections import defaultdict
 import feedparser
 import datetime
 
-api = Flask(__name__)
-
-@api.route('/getRSS/', methods=['GET'])
-def getRSS():
+def getRSS(self,page):
     rss_url = ["https://engineer.dena.jp/atom.xml",
     "https://dev.classmethod.jp/feed/",
     ]
@@ -32,11 +28,4 @@ def getRSS():
            page_info["title"].append(content.title)
            page_info['link'].append(content.link)
 
-    return make_response(jsonify(page_info))
-
-@api.errorhandler(404)
-def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
-
-if __name__ == '__main__':
-    api.run(host='0.0.0.0', port=3000)
+    return page_info

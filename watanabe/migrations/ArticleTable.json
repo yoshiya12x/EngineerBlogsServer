@@ -1,0 +1,11 @@
+[
+    {
+        "id": 0,
+        "companyId": 0,
+        "title": "タイトル",
+        "author": "著者",
+        "date": "投稿日",
+        "imgUrl": "画像URLです。",
+        "detailUrl": "詳細URLです。"
+    }
+]

@@ -1,0 +1,9 @@
+[
+    {
+        "id": 0,
+        "name": "会社",
+        "hasRss": 0,
+        "url": "URLです。",
+        "nextParameter": "複数ページ用のパラメータ"
+    }
+]
