@@ -1,17 +1,19 @@
 # EngineerBlogsServer
 
-#### サーバーレスフレームワークのインストール
+### ローカル環境構築手順
+
+#### 手順１：サーバーレスフレームワークのインストール
 npm install -g serverless
 
-#### 関連するパッケージのインストール
-npm install aws-sdk
-npm install --save-dev serverless-offline
-npm install --save-dev serverless-dynamodb-local
+#### 手順2：関連するパッケージのインストール
+npm install aws-sdk <br>
+npm install --save-dev serverless-offline <br>
+npm install --save-dev serverless-dynamodb-local <br>
 
-#### DynamoDB Local のインストール
+#### 手順3：DynamoDB Local のインストール
 sls dynamodb install
 
-#### DynamoDB Local の起動
+#### 手順4：DynamoDB Local の起動
 sls dynamodb start
 
 **ブラウザで http://localhost:8000/shell にアクセスし、テーブルの中身を確認します。左側のエディタに下記を記入し、再生ボタンを押します。**
